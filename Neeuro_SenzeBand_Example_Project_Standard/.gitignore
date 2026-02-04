@@ -16,8 +16,6 @@ Library/
 # Build results
 [Bb]in/
 [Dd]ebug*/
-*.exe
-*.dll
 
 # Mac
 .DS_Store
