@@ -45,7 +45,18 @@ This document describes how an automated coding agent should integrate the **Nee
 
 ### 3.2 Import NeeuroOS Unity SDK
 
-> Note: The SDK package is supplied by Neeuro and contains Unity plugins, scripts, and a sample project or scenes. [page:1]
+> Note: The SDK package is supplied by Neeuro and contains Unity plugins, scripts, and a sample project.
+- Unity Sample Project [Project](Neeuro_SenzeBand_Example_Project_Standard)
+- Plugin files:
+  - Common:
+    - [SharpOSC](Neeuro_SenzeBand_Example_Project_Standard/Assets/NSB_SDK/DLL/SharpOSC.dll)
+  - iOS:
+    - [Plugin](Neeuro_SenzeBand_Example_Project_Standard/Assets/Plugins/IOS/IOSBLERobot.framework)
+    - [Unity Connector DLL](Neeuro_SenzeBand_Example_Project_Standard/Assets/NSB_SDK/DLL/NSBiOSStandard.dll)
+  - Android:
+    - [Plugin](Neeuro_SenzeBand_Example_Project_Standard/Assets/Plugins/Android/NSBAndroidUnityPlugin-standard-release.aar)
+    - [Unity Connector DLL](Neeuro_SenzeBand_Example_Project_Standard/Assets/NSB_SDK/DLL/NSBAndroidStandard.dll)
+  
 
 Steps for an agent:  
 
