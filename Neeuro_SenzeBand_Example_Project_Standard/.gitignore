@@ -5,8 +5,6 @@ Library/
 
 # Visual Studio / MonoDevelop generated files
 .vs/
-*.csproj
-*.sln
 
 # User-specific files
 *.userprefs
