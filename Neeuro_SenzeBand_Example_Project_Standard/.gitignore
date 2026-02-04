@@ -1,0 +1,23 @@
+# Unity generated temp files
+obj/
+Temp/
+Library/
+
+# Visual Studio / MonoDevelop generated files
+.vs/
+*.csproj
+*.sln
+
+# User-specific files
+*.userprefs
+*.pidb.meta
+*.suo
+
+# Build results
+[Bb]in/
+[Dd]ebug*/
+*.exe
+*.dll
+
+# Mac
+.DS_Store

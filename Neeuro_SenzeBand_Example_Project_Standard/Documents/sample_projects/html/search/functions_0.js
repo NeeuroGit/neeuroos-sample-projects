@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['assignabdtdelegate_0',['assignABDTDelegate',['../class_n_s_b___e_e_g.html#a4eed2465ecc9a4184ad29c0d6ba8ed03',1,'NSB_EEG']]],
+  ['assignaccdelegate_1',['assignAccDelegate',['../class_n_s_b___e_e_g.html#aefa58297de970f8f1800006a738d420c',1,'NSB_EEG']]],
+  ['assignattentiondelegate_2',['assignAttentionDelegate',['../class_n_s_b___e_e_g.html#a1f43e7f812f740dc1ff976d382ebecd5',1,'NSB_EEG']]],
+  ['assignauthenticationresultdelegate_3',['assignAuthenticationResultDelegate',['../class_n_s_b___b_l_e.html#a1758dc84d26a0df5b2f3dbbf054f7e7b',1,'NSB_BLE']]],
+  ['assignauthenticationstatusdelegate_4',['assignAuthenticationStatusDelegate',['../class_n_s_b___b_l_e.html#a2dcf277409fc61acd62dcb6c1ce13292',1,'NSB_BLE']]],
+  ['assignbatterystatus_5',['assignBatteryStatus',['../class_n_s_b___e_e_g.html#abef70bdae7d1dc0933f4c602246da8d5',1,'NSB_EEG']]],
+  ['assignchanneldelegate_6',['assignChannelDelegate',['../class_n_s_b___e_e_g.html#a095c975d3f4a3b759ff0aab45612cfdf',1,'NSB_EEG']]],
+  ['assigncommandackdelegate_7',['assignCommandACKDelegate',['../class_n_s_b___e_e_g.html#ad79c70fbe3a264740ed6b4fe8aa80cce',1,'NSB_EEG']]],
+  ['assigneegimpedancedelegate_8',['assignEEGImpedanceDelegate',['../class_n_s_b___e_e_g.html#a5ba7a6a62345ce77ffd00bcbd8b7309a',1,'NSB_EEG']]],
+  ['assignenvironmentdatadelegate_9',['assignEnvironmentDataDelegate',['../class_n_s_b___e_e_g.html#a3328d688dc3a3b3d0c4377d07154f11c',1,'NSB_EEG']]],
+  ['assignerrorlogdelegate_10',['assignErrorLogDelegate',['../class_n_s_b___b_l_e.html#a2f4a84bd61a73da9629989c519b079af',1,'NSB_BLE']]],
+  ['assigngoodconnectioncheckdelegate_11',['assignGoodConnectionCheckDelegate',['../class_n_s_b___e_e_g.html#ae2b1f6574b392b99a94cf327ca096ac2',1,'NSB_EEG']]],
+  ['assignmcuiddelegate_12',['assignMCUIDDelegate',['../class_n_s_b___e_e_g.html#a92ad7faa7daab4d49734fdc38e4aa7e1',1,'NSB_EEG']]],
+  ['assignmentalworkloaddelegate_13',['assignMentalWorkloadDelegate',['../class_n_s_b___e_e_g.html#a374a08381ac1637b9bf8eadb6b1c7356',1,'NSB_EEG']]],
+  ['assignppgdatadelegate_14',['assignPPGDataDelegate',['../class_n_s_b___e_e_g.html#a1eae73f109e43e55cefb659c826a2740',1,'NSB_EEG']]],
+  ['assignrawdatadelegate_15',['assignRawDataDelegate',['../class_n_s_b___e_e_g.html#ad106e3f0ce1f66e9d9c012545aca7319',1,'NSB_EEG']]],
+  ['assignrawdatadelegate200ms_16',['assignRawDataDelegate200ms',['../class_n_s_b___e_e_g.html#a6904491deb1abdbeb28f5370513a1f61',1,'NSB_EEG']]],
+  ['assignrawdatadelegatefloat_17',['assignRawDataDelegateFloat',['../class_n_s_b___e_e_g.html#a508fc00dd1a8fadf7ad607139fd8779e',1,'NSB_EEG']]],
+  ['assignrelaxationdelegate_18',['assignRelaxationDelegate',['../class_n_s_b___e_e_g.html#aafa8e6869bbd227325657451de88a5b0',1,'NSB_EEG']]],
+  ['assignscancallback_19',['assignScanCallBack',['../class_n_s_b___b_l_e.html#ad293f352f2cf7eef227b011ce2916d91',1,'NSB_BLE']]],
+  ['assignsignalreadystatusdelegate_20',['assignSignalReadyStatusDelegate',['../class_n_s_b___e_e_g.html#a253b41de1e9b191306caf92658f955d6',1,'NSB_EEG']]],
+  ['authenticateuser_21',['AuthenticateUser',['../class_n_s_b___manager.html#a7ea9e8131cd96e3dda80a80958346267',1,'NSB_Manager']]],
+  ['authenticateuser_22',['authenticateUser',['../class_n_s_b___b_l_e.html#aab78724b25c3436925069e377231f837',1,'NSB_BLE']]]
+];

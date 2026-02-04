@@ -1,0 +1,89 @@
+Developing using the NSB Unity Standard SDK from an Unity package.
+
+Setting up the Standard SDK is divided into a few parts
+	1. Initialization
+	2. Scanning
+	3. Connecting
+	4. Authenticating
+	5. Impedance Check and Calibration
+	6. Using the SenzeBand
+	7. Disconnecting
+	8. Changing Scenes
+
+Initialization:
+	1. Follow Section (C) of README_STANDARD.txt.
+	2. NSB_Manager will be the main control script for accessing SenzeBand functions. It is advisable to never change anything inside this script and just access the functions inside from external classes/scripts. 
+	3. Inside, Init() is called at start for you. It contains all delegate initializations for when the plugin sends back data from SenzeBand to our app.
+	4. After a while, the system will call InitComplete() when the library initialization is complete.
+	5. You are now free to use the public functions inside NSB_Manager.
+
+Scanning:
+	1. Call SetScanning(bool) to switch scanning ON or OFF. It is automatically switched ON at Initialization. However, in the case when SetScanning was switched to OFF, you can switch it ON manually by calling the SetScanning(bool) function.
+	2. When scanning is enabled, FoundAvailableDevice(string, string) is called whenever system detects an active SenzeBand device nearby. This function stores the detected device's address in List<string> listAvailableDevices.
+	3. Objects that have been scanned before will not be picked up again. So if they are turned off, there will be no indicator. This is why NSB_Manager calls ClearList() every 6 seconds inside Update().
+	4. Connected devices will not be picked up by the scanner.
+	5. To access the list of scanned addresses, call NSB_Manager's GetScannedSenzeBandList() which returns List<string>.
+
+
+
+Connecting: 
+	1. There are three UnityEvent/callbacks that will trigger once you attempt to connect to a SenzeBand device. 
+		a. connectionSuccessfulCallback - this is triggered the moment the plugin confirms that SenzeBand connection is successful.
+		b. connectionBrokenCallback - this is triggered when SenzeBand connection is broken or disconnected either via switching OFF the SenzeBand device, switching OFF Bluetooth, or when DisconnectSB() is called.
+		c. connectionFailedCallback - this is triggered when the app fails to connect successfully to the SenzeBand.
+	Feel free to AddListener/subscribe to these UnityEvents the functions you want to get called when any of these events happen. One example is inside SBPanelUI.cs line 76.
+	2. To connect to a SenzeBand device, call ConnectSB(string) passing the address string of a scanned device.
+	3. Once the SenzeBand has been successfully connected, whatever you AddListener/subscribe to UnityEvent connectionSuccessfulCallback will be called. 
+
+
+Authenticating:
+	1. For the Standard SDK, you'll need an internet connection to Authenticate your developer code with Neeuro's servers. Call AuthenticateUser() to attempt authentication. In the sample, this function is attached to the Authenticate button.
+	2. Authentication is automatically done when a SenzeBand is connected. However, in the case when authentication fails, you can authenticate manually by calling NSB_Manager.instance.AuthenticateUser()
+	3. Once authentication is done, NSB_Manager calls two functions via callbacks:
+		a. grabAuthenticationStatus() - sends back authentication status from SenzeBand plugin
+		b. grabAuthenticationResult() - sends back authentication result(success or fail) from SenzeBand plugin
+	The moment authentication result returns success/verified, a countdown will start for the validity period of authentication.
+	4. You can AddListener/subscribe to UnityEvent authenticationUpdated the functions you want to get called when authentication callback is triggered (e.g. updating authentication UI, etc)
+	5. Note that if authentication fails, you will not be able to receive any data from the SenzeBand.
+
+Impedance Check and Calibration:
+	1. Impedance Check helps to verify if the signal quality from the 4 contact points/electrodes are good. Example, if there is makeup or some other impurities on the skin, the impedance values will be much higher due to the contribution of more resistance between the electrodes and skin surface, the EEG signals will not be good/accurate. Good impedance range is below 800kohms.
+	2. We recommend to do Impedance Check/Signal Quality Check after SenzeBand connection before using SenzeBand.
+	3. To do impedance check, call NSB_Manager.instance.sendCommand("COMMAND_AC_LEADOFF"). Switching to AC mode will stop SenzeBand from receiving EEG and start on checking signal quality. Advise the user to adjust SenzeBand and wipe off residue on skin to get better contact until all channel signals are green. Once done, switch back to DC mode by calling NSB_Manager.instance.sendCommand("COMMAND_DC_LEADOFF"). By default, SenzeBand is in DC mode after a successful connection.
+	4. Switching AC mode and DC mode can take a moment before plugin can verify and actually switch modes. That is why we advise to AddListener/subscribe to NSB_Manager's onCommandAcknowledged to know if plugin successfully switched modes already. This UnityEvent will trigger with parameter value either "COMMAND_ACK_DC_LEAD_OFF" or "COMMAND_ACK_AC_LEAD_OFF".
+	5. In the sample project, this UnityEvent was utilized to disable Impedance Check button temporarily and wait until the UnityEvent is triggered to enable to Impedance Check button again. This is to avoid spamming the button in switching modes.
+	6. If user thinks that the Acceleration and Orientation data is not accurate, we can perform calibration to improve the accuracy. To initiate calibration, call NSB_Manager.instance.sendCommand("COMMAND_CAL_START"). Please refer to the sample project on how to perform the calibration. To stop calibration, call NSB_Manager.instance.sendCommand("COMMAND_CAL_STOP").
+
+Using the SenzeBand:
+	1. After you've connceted the SenzeBand, you need to first enable it. You can do this by calling NSB_Manager.instance.SetReceiveEEG(true). This allows data from the SenzeBand to be sent over to Unity.
+	2. There are several different types of data you can grab from the SenzeBand. For each type of data, there is a callback that comes with it. NSB_Manager already assigned these callbacks for you in Init(), so just have to call the getters inside NSB_Manager to get the data: refer to Section (D) of README_STANDARD.txt.
+	3. Data from the SenzeBand will update/come in once every second. You can AddListener/subscribe to NSB_Manager's UnityEvent rawdataGrabbed the functions you want to get called when new set of EEG data is sent from SenzeBand (e.g. function for updating attention graph, etc). UnityEvent rawdataGrabbed is just a flag to let you know that EEG data is updated.
+	4. You can call NSB_Manager.instance.SetReceiveEEG(false) to stop the SenzeBand from sending data.
+
+
+Disconnecting:
+	1. Call NSB_Manager's DisconnectSB() to disconnect the SenzeBand.
+	2. Once the SenzeBand has been disconnected, whatever you AddListener/subscribe to UnityEvent connectionBrokenCallBack will be called. 
+
+Changing Scenes:
+	1. When the scenes are changed, the NSB_Objs gameobject could potentially be destroyed so make sure they don't get destroyed and should persist throughout all scenes.
+
+
+——————————————————————————————————————————————————————————————————————————————
+
+Support contact
+
+For support, please email to support@neeuro.com
+
+——————————————————————————————————————————————————————————————————————————————
+
+
+Last updated: 7th June 2024
+
+
+Copyright © 2017 NEEURO, Inc. All rights reserved.
+
+
+
+
+		
